@@ -64,7 +64,7 @@ html * {
   .imgBig{
     display: inline-block;
     width: 100%;
-    height:150px;
+    height:200px;
     margin-right: 10px;
     object-fit: cover;
     
@@ -84,7 +84,7 @@ html * {
   .container {
     justify-content: center;
     display: grid;
-    grid-gap: 10px;
+    grid-gap: 30px;
     grid-template-columns: 300px 300px 300px 300px;
     grid-template-rows: 50px 50px 50px 50px;
     grid-template-areas: 
@@ -123,5 +123,52 @@ html * {
   .f{
     grid-area: area6;
   }
-  
 
+  .hamburger{
+    background-color: transparent;
+    border: 0;
+    display: none;
+  }
+
+  @media  (min-width: 1201px)and (max-width: 1920px) {
+
+  }
+
+@media  (min-width: 601px) and (max-width: 1200px)  {
+    .container{
+    grid-template-columns: 45% 45% ;
+    grid-template-rows: 50px 50px ;
+    grid-template-areas: 
+    "area1 area2"
+    "area3  area4 "
+    "area3  area4 "
+    "area5  area6 "
+    "area5  area6 "
+      ;
+    }
+}
+
+
+@media (min-width: 360px) and (max-width: 600px){
+  .container{
+    grid-template-columns: 90% ;
+    grid-template-rows: 50px;
+    grid-template-areas: 
+    "area1 "
+    "area2 "
+    "area3 "
+    "area4 "
+    "area5 "
+    "area6 "
+      ;
+    }
+
+    .nav-ul{
+      display: none;
+    }
+
+    .hamburger{
+      display: block;
+    }
+
+}
