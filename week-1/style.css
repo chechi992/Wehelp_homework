@@ -82,10 +82,12 @@ html * {
   }
 
   .container {
+    max-width: 1200px;
     justify-content: center;
+    margin: auto;
     display: grid;
     grid-gap: 30px;
-    grid-template-columns: 300px 300px 300px 300px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 50px 50px 50px 50px;
     grid-template-areas: 
       "area1 area1 area2 area2"
