@@ -87,7 +87,7 @@ html * {
     margin: auto;
     display: grid;
     grid-gap: 30px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4,1fr);
     grid-template-rows:  repeat(1,50px) repeat(1,250px);
     grid-template-areas: 
       "area1 area1 area2 area2"
