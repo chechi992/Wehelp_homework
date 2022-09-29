@@ -12,10 +12,85 @@
 
 function calculate(min, max, step){
 // 請用你的程式補完這個函式的區塊
+let sum = 0 ;
+let i = min;
+while(i<=max ){
+    sum = sum + i;
+    i= i+step;
+ }
+return sum;
+
 }
 calculate(1, 3, 1); // 你的程式要能夠計算 1+2+3，最後印出 6
 calculate(4, 8, 2); // 你的程式要能夠計算 4+6+8，最後印出 18
-calculate(-1, 2, 2); // 你的程式要能夠計算 -1+1，最後印出 
+calculate(-1, 2, 2); // 你的程式要能夠計算 -1+1，最後印出 0
+console.log(calculate(1, 3, 1));
+console.log(calculate(4, 8, 2));
+console.log(calculate(-1, 2, 2));
+
+// 第二題
+
+function avg(data){
+// 請用你的程式補完這個函式的區塊
+let sum = 0;
+for (let i = 0 ; i < data.length ; i++){
+    if(data[i].manager === false ){
+        sum += data[i++].salary ;
+    }
+    return sum / data.length;
+}
+
+}
+avg({
+"employees":[
+{
+"name":"John",
+"salary":30000,
+"manager":false
+},
+{
+"name":"Bob",
+"salary":60000,
+"manager":true
+},
+{
+"name":"Jenny",
+"salary":50000,
+"manager":false
+},
+{
+"name":"Tony",
+"salary":40000,
+"manager":false
+}
+]
+}); 
+// 呼叫 avg 函式
+console.log(avg({
+"employees":[
+{
+"name":"John",
+"salary":30000,
+"manager":false
+},
+{
+"name":"Bob",
+"salary":60000,
+"manager":true
+},
+{
+"name":"Jenny",
+"salary":50000,
+"manager":false
+},
+{
+"name":"Tony",
+"salary":40000,
+"manager":false
+}
+]
+}))
+
     </script>
 </body>
 </html>
