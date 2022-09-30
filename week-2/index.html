@@ -32,15 +32,42 @@ console.log(calculate(-1, 2, 2));
 
 function avg(data){
 // 請用你的程式補完這個函式的區塊
-let sum = 0;
-for (let i = 0 ; i < data.length ; i++){
-    if(data[i].manager === false ){
-        sum += data[i++].salary ;
-    }
-    return sum / data.length;
+let employees = [
+{
+"name":"John",
+"salary":30000,
+"manager":false
+},
+{ 
+"name":"Bob",
+"salary":60000,
+"manager":true
+},
+{
+"name":"Jenny",
+"salary":50000,
+"manager":false
+},
+{
+"name":"Tony",
+"salary":40000,
+"manager":false
 }
+];
+
+let sum = 0;
+let number = 0 ;
+for (let i = 0 ; i < employees.length ; i++){
+    if(employees[i].manager === false ){
+    sum = sum + employees[i].salary ;
+    
+    }
 
 }
+
+
+}
+
 avg({
 "employees":[
 {
@@ -66,30 +93,63 @@ avg({
 ]
 }); 
 // 呼叫 avg 函式
-console.log(avg({
-"employees":[
-{
-"name":"John",
-"salary":30000,
-"manager":false
-},
-{
-"name":"Bob",
-"salary":60000,
-"manager":true
-},
-{
-"name":"Jenny",
-"salary":50000,
-"manager":false
-},
-{
-"name":"Tony",
-"salary":40000,
-"manager":false
+
+//第三題
+
+function func(a){
+
+    return function func(b,c){
+        console.log(a+(b*c));
+    }
+// 請用你的程式補完這個函式的區塊
 }
-]
-}))
+func(2)(3, 4); // 你補完的函式能印出 2+(3*4) 的結果 14
+func(5)(1, -5); // 你補完的函式能印出 5+(1*-5) 的結果 0
+func(-3)(2, 9); // 你補完的函式能印出 -3+(2*9) 的結果 15
+// 一般形式為 func(a)(b, c) 要印出 a+(b*c) 的結果
+
+//第四題
+
+function maxProduct(nums){
+    let total = -100000; // 解決方法?
+
+    for (let i=0; i<nums.length; i++) {
+    for (let j=i+1; j<nums.length; j++) { 
+      let product = nums[j] * nums[i];
+      if (product > total) {
+        total = product;
+      }else{
+        
+      }
+    }
+}
+console.log(total);
+}
+
+maxProduct([5, 20, 2, 6]) // 得到 120
+maxProduct([10, -20, 0, 3]) // 得到 30
+maxProduct([10, -20, 0, -3]) // 得到 60
+maxProduct([-1, 2]) // 得到 -2
+maxProduct([-1, 0, 2]) // 得到 0 或 -0
+maxProduct([5, -1, -2, 0]) // 得到 2
+maxProduct([-5, -2]) // 得到 10
+
+//第五題
+
+function twoSum(nums, target){
+// your code here
+for(let x=0;x<nums.length;x++){
+		let goal=target-nums[x];
+		for(let y=x+1;y<=nums.length;y++){
+			if(nums[y]===goal)
+			    return [x,y];
+        }
+    }
+}
+let result=twoSum([2, 11, 7, 15], 9);
+console.log(result); // show [0, 2] because nums[0]+nums[2] is 9
+
+
 
     </script>
 </body>
