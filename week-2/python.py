@@ -2,7 +2,6 @@
 
 def calculate(min, max, step):
 
-   
     a = 0
     numbers = list(range(min, max+1, step))
     a = a + sum(numbers)
@@ -20,10 +19,45 @@ print(calculate(-1, 2, 2))
 #第二題
 
 def avg(data):
+
+    employees=[
+    {
+    "name":"John",
+    "salary":30000,
+    "manager":False
+    },
+    {
+    "name":"Bob",
+    "salary":60000,
+    "manager":True
+    },
+    {
+    "name":"Jenny",
+    "salary":50000,
+    "manager":False
+    },
+    {
+    "name":"Tony",
+    "salary":40000,
+    "manager":False
+    }
+    ]
+
+    sum = 0
+    number = 0
+    for i in range(len(employees)):
+        if employees[i]["manager"]== False :
+            sum += employees[i]["salary"]
+            number = number+1
     
+    print(sum / number)
+        
+
+
+
 # 請用你的程式補完這個函式的區塊
 
-    avg({
+avg({
     "employees":[
     {
     "name":"John",
@@ -48,5 +82,59 @@ def avg(data):
     ]
     }) # 呼叫 avg 函
 
+
+
+#第三題
+
+def func(a):
+    def add(b,c):
+        return a+ (b*c)
+    return add
+
+# 請用你的程式補完這個函式的區塊
+func(2)(3, 4) # 你補完的函式能印出 2+(3*4) 的結果 14
+func(5)(1, -5) # 你補完的函式能印出 5+(1*-5) 的結果 0
+func(-3)(2, 9) # 你補完的函式能印出 -3+(2*9) 的結果 15
+# 一般形式為 func(a)(b, c) 要印出 a+(b*c) 的結果
+
+print(func(2)(3, 4))
+print(func(5)(1, -5))
+print(func(-3)(2, 9))
+
+#第四題
+
+def maxProduct(nums):
+# 請用你的程式補完這個函式的區塊
+    max_value = -1000
+
+    for i in range(len(nums)):
+        for j in range(i+1,len(nums)):
+            num = nums[j] * nums[i]
+            if (num > max_value):
+                max_value = num
+
+    print(max_value)
+
+
+maxProduct([5, 20, 2, 6]) # 得到 120
+maxProduct([10, -20, 0, 3]) # 得到 30
+maxProduct([10, -20, 0, -3]) # 得到 60
+maxProduct([-1, 2]) # 得到 -2
+maxProduct([-1, 0, 2]) # 得到 0
+maxProduct([5,-1, -2, 0]) # 得到 2
+maxProduct([-5, -2]) # 得到 10
+
+#第五題
+
+def twoSum(nums, target):
+# your code here
+    for i in range(len(nums)):
+        goal = target-nums[i]
+        for j in range(i+1,len(nums)):
+            if nums[j] == goal:
+                return i, j
+                
+result=twoSum([2, 11, 7, 15], 9)
+print(result) # show [0, 2] because nums[0]+nums[2] is 9
 
 

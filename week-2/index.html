@@ -59,11 +59,14 @@ let sum = 0;
 let number = 0 ;
 for (let i = 0 ; i < employees.length ; i++){
     if(employees[i].manager === false ){
-    sum = sum + employees[i].salary ;
+    sum += employees[i].salary;
+    number ++;
     
     }
-
+    
 }
+
+console.log(sum / number)
 
 
 }
