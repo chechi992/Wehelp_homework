@@ -20,15 +20,6 @@ print(calculate(-1, 2, 2))
 
 def avg(data):
 
-    # sum = 0
-    # number = 0
-    # for i in range(len(data.employees)):
-    #     if data.employees[i]["manager"]== False :
-    #         sum += data.employees[i]["salary"]
-    #         number = number+1
-    
-    # print(sum / number)
-
     sum = 0
     number = 0
     for i in range(len(data["employees"])):
