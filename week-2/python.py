@@ -20,37 +20,24 @@ print(calculate(-1, 2, 2))
 
 def avg(data):
 
-    employees=[
-    {
-    "name":"John",
-    "salary":30000,
-    "manager":False
-    },
-    {
-    "name":"Bob",
-    "salary":60000,
-    "manager":True
-    },
-    {
-    "name":"Jenny",
-    "salary":50000,
-    "manager":False
-    },
-    {
-    "name":"Tony",
-    "salary":40000,
-    "manager":False
-    }
-    ]
+    # sum = 0
+    # number = 0
+    # for i in range(len(data.employees)):
+    #     if data.employees[i]["manager"]== False :
+    #         sum += data.employees[i]["salary"]
+    #         number = number+1
+    
+    # print(sum / number)
 
     sum = 0
     number = 0
-    for i in range(len(employees)):
-        if employees[i]["manager"]== False :
-            sum += employees[i]["salary"]
+    for i in range(len(data["employees"])):
+        if data["employees"][i]["manager"]== False :
+            sum += data["employees"][i]["salary"]
             number = number+1
     
     print(sum / number)
+        
         
 
 

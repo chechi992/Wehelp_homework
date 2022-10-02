@@ -35,9 +35,9 @@ function avg(data){
 
 let sum = 0;
 let number = 0 ;
-for (let i = 0 ; i < data.length ; i++){
-    if(data[i].manager === false ){
-    sum += data[i].salary;
+for (let i = 0 ; i < data.employees.length ; i++){
+    if(data.employees[i].manager === false ){
+    sum += data.employees[i].salary;
     number ++;
     
     }
