@@ -105,7 +105,7 @@ print(func(-3)(2, 9))
 
 def maxProduct(nums):
 # 請用你的程式補完這個函式的區塊
-    max_value = -1000
+    max_value = float("-inf")
 
     for i in range(len(nums)):
         for j in range(i+1,len(nums)):

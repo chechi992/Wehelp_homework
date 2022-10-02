@@ -32,34 +32,12 @@ console.log(calculate(-1, 2, 2));
 
 function avg(data){
 // 請用你的程式補完這個函式的區塊
-let employees = [
-{
-"name":"John",
-"salary":30000,
-"manager":false
-},
-{ 
-"name":"Bob",
-"salary":60000,
-"manager":true
-},
-{
-"name":"Jenny",
-"salary":50000,
-"manager":false
-},
-{
-"name":"Tony",
-"salary":40000,
-"manager":false
-}
-];
 
 let sum = 0;
 let number = 0 ;
-for (let i = 0 ; i < employees.length ; i++){
-    if(employees[i].manager === false ){
-    sum += employees[i].salary;
+for (let i = 0 ; i < data.length ; i++){
+    if(data[i].manager === false ){
+    sum += data[i].salary;
     number ++;
     
     }
@@ -114,7 +92,7 @@ func(-3)(2, 9); // 你補完的函式能印出 -3+(2*9) 的結果 15
 //第四題
 
 function maxProduct(nums){
-    let total = -100000; // 解決方法?
+    let total = -Infinity ; // 解決方法?
 
     for (let i=0; i<nums.length; i++) {
     for (let j=i+1; j<nums.length; j++) { 
