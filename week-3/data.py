@@ -8,6 +8,6 @@ with request.urlopen(src)as response:
     clist=data["result"]["results"]
     with open("data.csv","w",encoding="utf-8") as file:
         for place in clist:
-            file.write(place["stitle"] + "," + place["address"][5:8] + "," + place["longitude"] + "," + place["latitude"] + "," + place["file"].re.findall("https:[^:]+.jpg",string) + "\n")
+            file.write(place["stitle"] + "," + place["address"][5:8] + "," + place["longitude"] + "," + place["latitude"] + "," + re.split('(jpg)',str(place["file"]))+ "\n")
 
 
