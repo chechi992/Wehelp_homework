@@ -10,7 +10,7 @@ with request.urlopen(src)as response:
     clist=data["result"]["results"]
     with open("data.csv","w",encoding="utf-8") as file:
         for place in clist:
-            if int(place['xpostDate'][0::3]) >= 2015 :
+            if int(place['xpostDate'][0:4]) >= 2015 :
                 file.write(place["stitle"] + "," + place["address"][5:8] + "," + place["longitude"] + "," + place["latitude"] + "," + str('http'+place["file"].split("http")[1])+ "\n")
 
 
