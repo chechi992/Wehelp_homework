@@ -29,23 +29,20 @@ for page in range(9494,9504,1):
             if '好雷' in s.text :
                 good.append(s.text)
                 for i in good:
-                    with open("movie.txt","w",encoding="utf-8") as file:  
-                        file.write(i+'\n')
-                        print(i)
-                        break
-                break
+                    # with open("movie.txt","w",encoding="utf-8") as file:  
+                    #     file.write(i+'\n')
+                         print(i)
         for d in title:            
             if '普雷' in d.text :
                 simple.append(d.text)
                 for y in simple:
                     with open("movie.txt","w",encoding="utf-8") as file:  
-                        file.write(y+'\n')
-                break
+                        print(y)
         for e in title:            
             if '負雷' in e.text :
                 bad.append(e.text)
                 for z in bad:
-                    with open("movie.txt","w",encoding="utf-8") as file:  
+                    with open("movie.txt","a",encoding="utf-8") as file:  
                         file.write(z+'\n')
                         print(z)
                 break
