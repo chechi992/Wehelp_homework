@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',    filename='template.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class="title">
+        <h2>歡迎光臨，請輸入帳號密碼</h2>
+    </div>
+    
+    <main>
+        <!-- <form method="post" action="/login"> -->
+            
+            <div class="login-form">
+                <div class="word">登入系統</div>
+                <div class="container">
+                <form method="post">
+                <div class=username><label for="username">帳號</label>
+                <input type="text" id="username" name="username"></div>
+                <label for="password">密碼</label>
+                <input type="password" id="password" name="password"><br>
+                <div class="action">
+                <button type="submit">登入</button>
+            </div>
+            </form>
+        </div> 
+    </div>
+
+    </main>
+</body>
+</html>

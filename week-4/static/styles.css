@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+   }
+
+
+html{
+    font-size:20px;
+}
+
+html * {
+    font-size: 1rem;
+}
+
+
+.title{
+    background-color: rgb(35, 29, 91);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding: 20px;
+
+}
+
+.title h2{
+    color: aliceblue;
+}
+
+.login-form {
+    margin: 20px;
+    display: block;
+}
+.username{
+    margin: 10px 0 10px;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.word{
+    text-align:center;
+    font-weight:bold;
+  }
+
+.action{
+    text-align:center;
+    margin-top: 10px;
+}
