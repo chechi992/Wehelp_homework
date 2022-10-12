@@ -33,31 +33,31 @@ def login():
 
         if request.form['username'] == "" or request.form['password'] == "" :
 
-            return redirect(url_for('fail', message='請輸入帳號、密碼')) #在網址列後加入字串
+            return redirect(url_for('error', message='請輸入帳號、密碼')) #在網址列後加入字串
 
         if request.form['username'] == 'test' and request.form['password'] == 'test':
 
             session["user"] = request.form['username']
 
-            return redirect(url_for('profile'))       
+            return redirect(url_for('member'))       
 
         if request.form['username'] != 'test' or request.form['password'] != 'test':
 
-            return redirect(url_for('fail', message='帳號、或密碼輸入錯誤'))
+            return redirect(url_for('error', message='帳號、或密碼輸入錯誤'))
     
     return render_template('login.html')
 
-@app.route("/fail") 
-def fail():
+@app.route("/error") 
+def error():
 
     message = request.args['message'] # query-string
-    return render_template('fail.html', message = message) #傳遞參數
+    return render_template('error.html', message = message) #傳遞參數
 
-@app.route("/profile") #代表我們要處理的網站路徑
-def profile():
+@app.route("/member") #代表我們要處理的網站路徑
+def member():
     if "user" in session:
         user = session['user']
-        return render_template('profile.html')
+        return render_template('member.html')
     else:
         return redirect(url_for('login')) 
 
@@ -69,4 +69,4 @@ def signout():
 
 if __name__ =="__main__":#如果以主程式執行
     app.debug = True
-    app.run() #立刻啟動伺服器
+    app.run(port=3000) #立刻啟動伺服器
