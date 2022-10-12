@@ -44,9 +44,15 @@ html * {
 .word{
     text-align:center;
     font-weight:bold;
-  }
-
+}
+  
 .action{
+    text-align:center;
+    margin-top: 10px;
+}
+
+.logout{
+    justify-content: center;
     text-align:center;
     margin-top: 10px;
 }
