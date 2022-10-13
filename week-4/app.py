@@ -27,6 +27,29 @@ app.config['SECRET_KEY'] = 'Your Key' #session 需設定 secret-key
 
 def login():
 
+    # if request.method == 'POST':
+
+    #     session.pop('user',None) #把資料清空
+
+    #     if request.form['username'] == "" or request.form['password'] == "" :
+
+    #         return redirect(url_for('error', message='請輸入帳號、密碼')) #在網址列後加入字串
+
+    #     if request.form['username'] == 'test' and request.form['password'] == 'test':
+
+    #         session["user"] = request.form['username']
+
+    #         return redirect(url_for('member'))       
+
+    #     if request.form['username'] != 'test' or request.form['password'] != 'test':
+
+    #         return redirect(url_for('error', message='帳號、或密碼輸入錯誤'))
+    
+    return render_template('login.html')
+
+@app.route('/signon',methods = ['POST', 'GET'])
+def signon():
+    
     if request.method == 'POST':
 
         session.pop('user',None) #把資料清空
@@ -44,8 +67,8 @@ def login():
         if request.form['username'] != 'test' or request.form['password'] != 'test':
 
             return redirect(url_for('error', message='帳號、或密碼輸入錯誤'))
-    
-    return render_template('login.html')
+
+
 
 @app.route("/error") 
 def error():
