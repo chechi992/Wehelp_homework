@@ -23,33 +23,16 @@ app = Flask(__name__,template_folder='./templates',static_url_path='/static') #_
 
 app.config['SECRET_KEY'] = 'Your Key' #session 需設定 secret-key
 
-@app.route("/",methods = ['POST', 'GET']) #函式的裝飾(Decorator):以函式為基礎，提供附加的功能
+@app.route("/") #函式的裝飾(Decorator):以函式為基礎，提供附加的功能
+
+def home():
+
+    return redirect(url_for('login')) 
+
+@app.route("/login",methods = ['POST', 'GET']) #函式的裝飾(Decorator):以函式為基礎，提供附加的功能
 
 def login():
 
-    # if request.method == 'POST':
-
-    #     session.pop('user',None) #把資料清空
-
-    #     if request.form['username'] == "" or request.form['password'] == "" :
-
-    #         return redirect(url_for('error', message='請輸入帳號、密碼')) #在網址列後加入字串
-
-    #     if request.form['username'] == 'test' and request.form['password'] == 'test':
-
-    #         session["user"] = request.form['username']
-
-    #         return redirect(url_for('member'))       
-
-    #     if request.form['username'] != 'test' or request.form['password'] != 'test':
-
-    #         return redirect(url_for('error', message='帳號、或密碼輸入錯誤'))
-    
-    return render_template('login.html')
-
-@app.route('/signon',methods = ['POST', 'GET'])
-def signon():
-    
     if request.method == 'POST':
 
         session.pop('user',None) #把資料清空
@@ -67,6 +50,35 @@ def signon():
         if request.form['username'] != 'test' or request.form['password'] != 'test':
 
             return redirect(url_for('error', message='帳號、或密碼輸入錯誤'))
+    
+    return render_template('login.html')
+
+# @app.route('/signin',methods = ['POST', 'GET'])
+# def signin():
+    
+#     if request.method == 'POST':
+
+#         user = request.form['username']
+#         password =  request.form['password']
+
+#         session.pop('user',None) #把資料清空
+
+#         if  user == "" or password == "" :
+
+#             return redirect(url_for('error', message='請輸入帳號、密碼')) #在網址列後加入字串
+
+#         if request.form['username'] == 'test' and request.form['password'] == 'test':
+
+#             session["user"] = request.form['username']
+
+#             return redirect(url_for('member'))       
+
+#         if request.form['username'] != 'test' or request.form['password'] != 'test':
+
+#             return redirect(url_for('error', message='帳號、或密碼輸入錯誤'))
+
+#     return render_template('login.html')
+
 
 
 
