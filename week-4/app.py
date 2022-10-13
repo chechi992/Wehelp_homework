@@ -27,11 +27,11 @@ app.config['SECRET_KEY'] = 'Your Key' #session 需設定 secret-key
 
 def home():
 
-    return redirect(url_for('login')) 
+    return redirect(url_for('signin')) 
 
-@app.route("/login",methods = ['POST', 'GET']) #函式的裝飾(Decorator):以函式為基礎，提供附加的功能
+@app.route("/signin",methods = ['POST', 'GET']) #函式的裝飾(Decorator):以函式為基礎，提供附加的功能
 
-def login():
+def signin():
 
     if request.method == 'POST':
 
