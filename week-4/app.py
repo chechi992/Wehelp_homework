@@ -26,8 +26,10 @@ app.config['SECRET_KEY'] = 'Your Key' #session 需設定 secret-key
 @app.route("/") #函式的裝飾(Decorator):以函式為基礎，提供附加的功能
 
 def home():
+    
 
-    return redirect(url_for('signin')) 
+    return render_template('login.html')
+ 
 
 @app.route("/signin",methods = ['POST', 'GET']) #函式的裝飾(Decorator):以函式為基礎，提供附加的功能
 
@@ -53,34 +55,6 @@ def signin():
     
     return render_template('login.html')
 
-# @app.route('/signin',methods = ['POST', 'GET'])
-# def signin():
-    
-#     if request.method == 'POST':
-
-#         user = request.form['username']
-#         password =  request.form['password']
-
-#         session.pop('user',None) #把資料清空
-
-#         if  user == "" or password == "" :
-
-#             return redirect(url_for('error', message='請輸入帳號、密碼')) #在網址列後加入字串
-
-#         if request.form['username'] == 'test' and request.form['password'] == 'test':
-
-#             session["user"] = request.form['username']
-
-#             return redirect(url_for('member'))       
-
-#         if request.form['username'] != 'test' or request.form['password'] != 'test':
-
-#             return redirect(url_for('error', message='帳號、或密碼輸入錯誤'))
-
-#     return render_template('login.html')
-
-
-
 
 @app.route("/error") 
 def error():
@@ -99,7 +73,7 @@ def member():
 @app.route('/signout')# 登出頁面
 def signout():
     session.pop('user',None) # 清空資料
-    return redirect(url_for('login')) 
+    return redirect(url_for('signin')) 
 
 
 if __name__ =="__main__":#如果以主程式執行
