@@ -14,17 +14,20 @@
     </div>
     
     <main>
-        <!-- <form method="post" action="/login"> -->
-            
+         
             <div class="login-form">
                 <div class="word">登入系統</div>
+
                 <div class="container">
-                <form method="post" action='/signin'>
-                <div class=username><label for="username">帳號</label>
+                <form method="post" action='/signin'> <!-- 加入路徑 !-->
+
+                <div class=username>
+                <label for="username">帳號</label>
                 <input type="text" id="username" name="username"></div>
                 <label for="password">密碼</label>
                 <input type="password" id="password" name="password"><br>
-                <div class="action">
+
+                <div class="action">                
                 <button type="submit">登入</button>
             </div>
             </form>

@@ -68,12 +68,12 @@ def member():
         user = session['user']
         return render_template('member.html')
     else:
-        return redirect(url_for('login')) 
+        return redirect(url_for('home')) 
 
 @app.route('/signout')# 登出頁面
 def signout():
     session.pop('user',None) # 清空資料
-    return redirect(url_for('signin')) 
+    return redirect(url_for('home')) 
 
 
 if __name__ =="__main__":#如果以主程式執行
