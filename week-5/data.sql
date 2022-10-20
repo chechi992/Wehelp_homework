@@ -39,7 +39,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (1,'kevin','test','test',600,'2022-10-20 17:23:12'),(2,'lorin','rin','poi',780,'2022-10-20 17:26:47'),(3,'erin','poi89','ury5677',3400,'2022-10-20 17:27:48'),(4,'yotty','tory','roi',830,'2022-10-20 17:28:25'),(5,'sally','daddy','mpmmy33',260,'2022-10-20 17:28:56');
+INSERT INTO `member` VALUES (1,'test2','test','test',600,'2022-10-20 17:23:12'),(2,'lorin','rin','poi',780,'2022-10-20 17:26:47'),(3,'erin','poi89','ury5677',3400,'2022-10-20 17:27:48'),(4,'yotty','tory','roi',830,'2022-10-20 17:28:25'),(5,'sally','daddy','mpmmy33',260,'2022-10-20 17:28:56');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
