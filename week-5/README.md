@@ -24,7 +24,7 @@ create table member(
 #### 要求三
 
 ```php
-INSERT INTO member(id , name , password , follower_count , time) VALUES (1, 'test','test',600,default);
+INSERT INTO member(id , name , password , follower_count , time) VALUES (1, 'kevin','test','test',600,default);
 ```
 <img width="570" alt="截圖 2022-10-19 下午5 18 07" src="https://user-images.githubusercontent.com/107464637/196901750-8ddd7852-e047-46ef-95bf-d63e88484f6c.png">
 
