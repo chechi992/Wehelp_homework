@@ -14,7 +14,8 @@ CREATE DATABASE website
 ```php
 create table member(
     -> id bigint(20) UNSIGNED AUTO_INCREMENT PRIMARY KEY COMMENT"獨立編號",
-    -> name varchar(255) NOT NULL COMMENT"帳戶名稱",
+    -> name varchar(255) NOT NULL COMMENT"姓名", 
+    -> username varchar(255) NOT NULL COMMENT"帳戶名稱", 
     -> password varchar(255) NOT NULL COMMENT"帳戶密碼",
     -> follower_count int unsigned NOT NULL default'0' COMMENT"追蹤者數量",
     -> time datetime NOT NULL default CURRENT_TIMESTAMP COMMENT"註冊時間");   
