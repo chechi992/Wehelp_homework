@@ -1,4 +1,4 @@
-import imp
+
 from flask import (
     Flask,
     redirect,
@@ -8,8 +8,23 @@ from flask import (
     url_for,
 )
 
-from flask_mysqldb import MySQL
-import MySQLdb.cursors
+import mysql.connector
+ 
+db = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  passwd="1234",
+database="website"
+)
+
+cursor = db.cursor()
+
+
+
+# sign up
+cursor.execute("SELECT * FROM member")
+results = cursor.fetchall()
+print(results)
 
 class User: #定義user
     def __init__(self,id,username,password) :
@@ -26,12 +41,12 @@ users.append(User(id=1,username = 'test',password='test')) #設定登入帳號�
 app = Flask(__name__,template_folder='./templates',static_url_path='/static') #__name__代表目前執行的模組
 
 app.config['SECRET_KEY'] = 'Your Key' #session 需設定 secret-key
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'website'
+# app.config['MYSQL_HOST'] = 'localhost'
+# app.config['MYSQL_USER'] = 'root'
+# app.config['MYSQL_PASSWORD'] = ''
+# app.config['MYSQL_DB'] = 'website'
 
-mysql = MySQL(app)
+# mysql = MySQL(app)
 
 @app.route("/") #函式的裝飾(Decorator):以函式為基礎，提供附加的功能
 
@@ -49,15 +64,14 @@ def signin():
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM accounts WHERE username = % s AND password = % s', (username, password, ))
+        cursor.execute('SELECT * FROM member WHERE username = %s AND password = %s', (username, password))
         account = cursor.fetchone()
         if account:
             session['loggedin'] = True
             session['id'] = account['id']
             session['username'] = account['username']
             msg = 'Logged in successfully !'
-            return render_template('index.html', msg = msg)
+            return redirect(url_for('member', msg = msg))
         else:
             msg = 'Incorrect username / password !'
             
