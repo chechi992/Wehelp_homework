@@ -73,9 +73,8 @@ def signup():
             cursor.execute(sql, val) 
             db.commit()
    
-            msg = 'You have successfully registered!'
 
-    return render_template('member.html', msg=msg)
+    return render_template('member.html')
   
 
 @app.route("/signin",methods = ['POST', 'GET']) #函式的裝飾(Decorator):以函式為基礎，提供附加的功能
