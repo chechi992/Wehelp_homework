@@ -6,7 +6,10 @@ from flask import (
     request,
     session,
     url_for,
+    jsonify
 )
+
+import sqlite3
 
 
 from flaskext.mysql import MySQL
@@ -45,6 +48,49 @@ app.config['SECRET_KEY'] = 'Your Key' #session 需設定 secret-key
 def home():
     
     return render_template('login.html')
+
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d
+
+@app.route('/api/v1/resources/books/all', methods=['GET'])
+def api_all():
+
+    conn = sqlite3.connect('books.db')
+    conn.row_factory = dict_factory
+    cur = conn.cursor()
+    all_books = cur.execute('SELECT * FROM books;').fetchall()
+
+    return jsonify(all_books)
+
+
+
+@app.route('/api/member', methods=['GET'])
+def api_filter():
+    
+    query_parameters = request.args
+
+    id = query_parameters.get('id')
+
+    query = "SELECT * FROM member WHERE"
+    to_filter = []
+
+    if id:
+        query += ' id=? AND'
+        to_filter.append(id)
+
+    query = query[:-4] + ';'
+
+    conn = sqlite3.connect('member.db')
+    conn.row_factory = dict_factory
+    cur = conn.cursor()
+
+    results = cur.execute(query, to_filter).fetchall()
+
+    return jsonify(results)
+    
 
 @app.route("/signup",methods = ['POST', 'GET'])
 
