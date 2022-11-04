@@ -11,18 +11,20 @@ from flask import (
 
 import sqlite3
 
+""" 
+from flaskext.mysql import MySQL """
 
-""" from flaskext.mysql import MySQL """
-
-""" import pymysql  """
+""" import pymysql """
 import mysql.connector
  
 db = mysql.connector.connect(
   host="localhost",
   user="root",
-  passwd="1234",
+  passwd="",
 database="website"
 )
+
+#windows : password="1234"
 
 cursor = db.cursor()
 
@@ -49,13 +51,8 @@ def home():
     
     return render_template('login.html')
 
-def dict_factory(cursor, row):
-    d = {}
-    for idx, col in enumerate(cursor.description):
-        d[col[0]] = row[idx]
-    return d
 
-@app.route('/api/v1/resources/books/all', methods=['GET'])
+""" @app.route('/api/v1/resources/books/all', methods=['GET'])
 def api_all():
 
     conn = sqlite3.connect('books.db')
@@ -64,10 +61,10 @@ def api_all():
     all_books = cur.execute('SELECT * FROM books;').fetchall()
 
     return jsonify(all_books)
+ """
 
 
-
-@app.route('/api/member', methods=['GET'])
+""" @app.route('/api/member', methods=['GET'])
 def api_filter():
     
     query_parameters = request.args
@@ -89,8 +86,35 @@ def api_filter():
 
     results = cur.execute(query, to_filter).fetchall()
 
-    return jsonify(results)
+    return jsonify(results) """
+
+@app.route("/api/member",methods=['POST','GET'])
+
+def api_filter():
+  
     
+    query_parameters = request.args
+
+    id = query_parameters.get('id')
+
+    query = "SELECT * FROM member WHERE"
+    to_filter = []
+
+    if id:
+        query += ' id=? AND'
+        to_filter.append(id)
+
+    query = query[:-4] + ';'
+
+  #conn = sqlite3.connect('member.db')
+    #cur = conn.cursor() 
+
+    cursor.execute(query, to_filter)
+    results = cursor.fetchall()
+
+    return jsonify(results)
+
+  
 
 @app.route("/signup",methods = ['POST', 'GET'])
 
