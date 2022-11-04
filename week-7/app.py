@@ -11,16 +11,16 @@ from flask import (
 
 import sqlite3
 
-""" 
-from flaskext.mysql import MySQL """
 
-""" import pymysql """
+from flaskext.mysql import MySQL
+
+import pymysql
 import mysql.connector
  
 db = mysql.connector.connect(
   host="localhost",
   user="root",
-  passwd="",
+  password="1234",
 database="website"
 )
 
@@ -88,6 +88,57 @@ def api_filter():
 
     return jsonify(results) """
 
+@app.route('/api/member/all', methods=['GET'])
+def api_all():
+   
+    query_parameters = request.args
+
+    id = query_parameters.get('id')
+
+    query = "SELECT * FROM accounts "
+    to_filter = []
+
+    cursor.execute(query, to_filter)
+    results = cursor.fetchall()
+
+    return jsonify(results)
+
+
+@app.route('/api/member', methods=['GET'])
+def api_id():
+    # Check if an ID was provided as part of the URL.
+    # If ID is provided, assign it to a variable.
+    # If no ID is provided, display an error in the browser.
+
+    if 'username' in request.args:
+        username = str(request.args['username'])
+    else:
+        return "Error: No id field provided. Please specify an id."
+
+    # Create an empty list for our results
+    results = []
+
+
+    query = "SELECT * FROM accounts WHERE username = %s"
+    valid = (username,)
+    cursor.execute(query,valid)
+    account = cursor.fetchone()
+    # to_filter = []
+    # cursor.execute(query, to_filter)
+    # results = cursor.fetchall()
+    # db.commit()
+    # print(results)
+
+    # Loop through the data and match results that fit the requested ID.
+    # IDs are unique, but other fields might return many results
+    for member in account:
+        if member == username:
+            results.append(member)
+
+    # Use the jsonify function from Flask to convert our list of
+    # Python dictionaries to the JSON format.
+    return jsonify(results)
+
 @app.route("/api/member",methods=['POST','GET'])
 
 def api_filter():
@@ -97,12 +148,12 @@ def api_filter():
 
     id = query_parameters.get('id')
 
-    query = "SELECT * FROM member WHERE"
+    query = "SELECT * FROM accounts WHERE username = %s"
     to_filter = []
 
-    if id:
-        query += ' id=? AND'
-        to_filter.append(id)
+    # if id:
+    #     query += ' id=? AND'
+    #     to_filter.append(id)
 
     query = query[:-4] + ';'
 
@@ -110,7 +161,7 @@ def api_filter():
     #cur = conn.cursor() 
 
     cursor.execute(query, to_filter)
-    results = cursor.fetchall()
+    results = cursor.fetchone()
 
     return jsonify(results)
 
