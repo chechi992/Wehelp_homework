@@ -12,9 +12,9 @@ from flask import (
 import sqlite3
 
 
-from flaskext.mysql import MySQL
-
-import pymysql 
+""" from flaskext.mysql import MySQL
+ """
+""" import pymysql  """
 import mysql.connector
  
 db = mysql.connector.connect(
