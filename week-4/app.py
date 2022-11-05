@@ -7,6 +7,8 @@ from flask import (
     url_for,
 )
 
+
+
 class User: #定義user
     def __init__(self,id,username,password) :
         self.id = id
@@ -29,6 +31,7 @@ def home():
     
 
     return render_template('login.html')
+
  
 
 @app.route("/signin",methods = ['POST', 'GET']) #函式的裝飾(Decorator):以函式為基礎，提供附加的功能

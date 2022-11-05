@@ -17,10 +17,15 @@
         <div class="word">
            {{session.name}}，歡迎登入系統</div>
         <div class="logout"> <a href="http://127.0.0.1:3000/" type="submit" >登出系統</a></div>
+        <div class="word">查詢會員姓名</div>
+        <form method="get" id="search">
+        <input type="text" id="username" name="username"><button type="submit" onclick="search()" value="search" >查詢</button>
+        </form> 
+
     </div>
 
     
-
+    <script type="text/javascript" src="../script.js"></script>
 
 </body>
 </html>

@@ -52,41 +52,6 @@ def home():
     return render_template('login.html')
 
 
-""" @app.route('/api/v1/resources/books/all', methods=['GET'])
-def api_all():
-
-    conn = sqlite3.connect('books.db')
-    conn.row_factory = dict_factory
-    cur = conn.cursor()
-    all_books = cur.execute('SELECT * FROM books;').fetchall()
-
-    return jsonify(all_books)
- """
-
-
-""" @app.route('/api/member', methods=['GET'])
-def api_filter():
-    
-    query_parameters = request.args
-
-    id = query_parameters.get('id')
-
-    query = "SELECT * FROM member WHERE"
-    to_filter = []
-
-    if id:
-        query += ' id=? AND'
-        to_filter.append(id)
-
-    query = query[:-4] + ';'
-
-    conn = sqlite3.connect('member.db')
-    conn.row_factory = dict_factory
-    cur = conn.cursor()
-
-    results = cur.execute(query, to_filter).fetchall()
-
-    return jsonify(results) """
 
 @app.route('/api/member/all', methods=['GET'])
 def api_all():
@@ -103,69 +68,29 @@ def api_all():
 
     return jsonify(results)
 
-
 @app.route('/api/member', methods=['GET'])
 def api_id():
+
     # Check if an ID was provided as part of the URL.
     # If ID is provided, assign it to a variable.
     # If no ID is provided, display an error in the browser.
 
     if 'username' in request.args:
         username = str(request.args['username'])
-    else:
-        return "Error: No id field provided. Please specify an id."
+        sql = "SELECT id, name,username FROM accounts WHERE username = %s"
+        valid = (username,)
+        cursor.execute(sql,valid)
+        data = cursor.fetchone()
+        if data :
+            result = {'id':data[0],'name':data[1],'username':data[2]}
+            return jsonify({'data':result})
+        else:
+            return jsonify({'data':'null'})
 
-    # Create an empty list for our results
-    results = []
+    # else:
+    #     return "Error: No id field provided. Please specify an id."
 
-
-    query = "SELECT * FROM accounts WHERE username = %s"
-    valid = (username,)
-    cursor.execute(query,valid)
-    account = cursor.fetchone()
-    # to_filter = []
-    # cursor.execute(query, to_filter)
-    # results = cursor.fetchall()
-    # db.commit()
-    # print(results)
-
-    # Loop through the data and match results that fit the requested ID.
-    # IDs are unique, but other fields might return many results
-    for member in account:
-        if member == username:
-            results.append(member)
-
-    # Use the jsonify function from Flask to convert our list of
-    # Python dictionaries to the JSON format.
-    return jsonify(results)
-
-@app.route("/api/member",methods=['POST','GET'])
-
-def api_filter():
-  
-    
-    query_parameters = request.args
-
-    id = query_parameters.get('id')
-
-    query = "SELECT * FROM accounts WHERE username = %s"
-    to_filter = []
-
-    # if id:
-    #     query += ' id=? AND'
-    #     to_filter.append(id)
-
-    query = query[:-4] + ';'
-
-  #conn = sqlite3.connect('member.db')
-    #cur = conn.cursor() 
-
-    cursor.execute(query, to_filter)
-    results = cursor.fetchone()
-
-    return jsonify(results)
-
-  
+   
 
 @app.route("/signup",methods = ['POST', 'GET'])
 
