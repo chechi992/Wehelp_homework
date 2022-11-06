@@ -92,11 +92,12 @@ def api_id():
         valid = (username,)
         cursor.execute(sql,valid)
         data = cursor.fetchone()
+        null = None
         if data :
             result = {'id':data[0],'name':data[1],'username':data[2]}
             return jsonify({'data':result}),200
         else:
-            return jsonify({'data':'null'}),200
+            return jsonify({'data':null})
         
     return render_template('member.html')
    
