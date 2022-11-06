@@ -6,7 +6,8 @@ from flask import (
     request,
     session,
     url_for,
-    jsonify
+    jsonify,
+    make_response
 )
 
 import sqlite3
@@ -68,6 +69,16 @@ def api_all():
 
     return jsonify(results)
 
+@app.route('/api/member', methods=['PATCH'])
+def update():
+    
+    req = request.get_json()
+    print(req)
+
+    res = make_response(jsonify({"name":req}),200)
+
+    return res
+
 @app.route('/api/member', methods=['GET'])
 def api_id():
 
@@ -83,13 +94,11 @@ def api_id():
         data = cursor.fetchone()
         if data :
             result = {'id':data[0],'name':data[1],'username':data[2]}
-            return jsonify({'data':result})
+            return jsonify({'data':result}),200
         else:
-            return jsonify({'data':'null'})
-
-    # else:
-    #     return "Error: No id field provided. Please specify an id."
-
+            return jsonify({'data':'null'}),200
+        
+    return render_template('member.html')
    
 
 @app.route("/signup",methods = ['POST', 'GET'])

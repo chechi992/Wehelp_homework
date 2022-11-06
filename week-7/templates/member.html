@@ -17,15 +17,88 @@
         <div class="word">
            {{session.name}}，歡迎登入系統</div>
         <div class="logout"> <a href="http://127.0.0.1:3000/" type="submit" >登出系統</a></div>
-        <div class="word">查詢會員姓名</div>
-        <form method="get" id="search">
-        <input type="text" id="username" name="username"><button type="submit" onclick="search()" value="search" >查詢</button>
-        </form> 
 
-    </div>
+
+    <div class="word">查詢會員姓名</div>
+    <div class="word">
+        <div id="search">
+            <input type="text" id="username" name="username">
+            <button type="submit" onclick="search()" value="search" >查詢</button>
+    </div></div>
+
+    <div class="word">更新我的姓名</div>
+    <div class="word">
+        <div id="update">
+    <input type="text" id="username_update" name="username_update">
+    <button type="submit" onclick="update()" value="update" >更新</button>
+</div></div>
 
     
-    <script type="text/javascript" src="../script.js"></script>
+<script type="text/javascript">
+
+
+let jsonData = {};
+let updateDate = {};
+
+function search(){
+
+    const nameElement = document.getElementById("username");
+    const accountName = nameElement.value;
+
+    fetch('http://127.0.0.1:3000/api/member?username=' + accountName , {method: 'GET'})
+            .then((response) =>{
+                return response.json();
+            }).then((data) =>{
+                jsonData=data.data;
+                console.log(jsonData);
+
+                let result = jsonData['name'];
+                console.log(result);
+                let Div = document.querySelector("#search");
+                let Text = document.createElement("div");
+                Text.textContent = result;
+                return Div.appendChild(Text);
+
+            })
+}
+
+
+function update(){
+
+    let userUpdate = document.getElementById("username_update")
+    let userUpdateName = userUpdate.value
+
+    const nameElement = document.getElementById("username");
+    const accountName = nameElement.value;
+    
+    console.log(userUpdateName)
+
+    fetch('http://127.0.0.1:3000/api/member?username=' + accountName ,{
+
+            method: "PATCH",
+            headers: {'Content-Type': 'application/json'}, 
+            body: JSON.stringify({'name':userUpdateName}
+            )
+        }).then((response) =>{
+            if(response.status !== 200){
+                console.log(`${response.status}`);
+                
+            }
+                return response.json();
+            }).then((data) =>
+            {
+
+                updateDate=data.name
+                console.log(updateDate)
+                return {
+                    "name":updateDate
+                }
+                
+            })
+}
+
+
+</script>
 
 </body>
 </html>
