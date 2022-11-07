@@ -51,15 +51,17 @@ function search(){
             }).then((data) =>{
                 jsonData=data.data;
                 console.log(jsonData);
-                let result = jsonData['name'];
-                console.log(result);
-                if (result != null){
+                
+        
+                if (jsonData != null){
+                    let result = jsonData['name'];
                     let Div = document.querySelector("#search");
                     let Text = document.createElement("div");
                     Text.textContent = result;
-                    return Div.appendChild(Text);}
+                    return Div.appendChild(Text);
+                }
 
-                else if (result === null){
+                else {
                     let Div = document.querySelector("#search");
                     let Text = document.createElement("div");
                     Text.textContent = '找不到使用者';

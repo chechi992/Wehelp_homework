@@ -1,4 +1,3 @@
-
 from flask import (
     Flask,
     redirect,
@@ -13,18 +12,25 @@ from flask import (
 import sqlite3
 
 
-from flaskext.mysql import MySQL
+""" from flaskext.mysql import MySQL """
 
-import pymysql
+""" import pymysql """
 import mysql.connector
  
 db = mysql.connector.connect(
   host="localhost",
   user="root",
-  password="1234",
+  passwd="",
 database="website"
 )
 
+""" db = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="1234",
+database="website"
+)
+ """
 #windows : password="1234"
 
 cursor = db.cursor()
@@ -73,11 +79,24 @@ def api_all():
 def update():
     
     req = request.get_json()
-    print(req)
 
-    res = make_response(jsonify({"name":req}),200)
+    #username = str(request.args['username'])
+    #query = "UPDATE accounts SET name = %s  WHERE username = %s ;"
+    #val = (req,username)
+    #print(req)
+
+    #cursor.execute(query, val)
+
+    #db.commit()
+
+    true = true
+    res = make_response(jsonify({"ok":true}),200)
 
     return res
+
+    #else:
+        #rep = make_response(jsonify({"error":true}),400)
+        #return rep
 
 @app.route('/api/member', methods=['GET'])
 def api_id():
