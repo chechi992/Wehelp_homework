@@ -77,22 +77,19 @@ def api_all():
 
 @app.route('/api/member', methods=['PATCH'])
 def update():
-    
-    req = request.get_json()
+    if 'username' in request.args:
+        req = request.get_json()
+        print(req)
+        username = str(request.args['username'])
+        query = "UPDATE accounts SET name = %s  WHERE username = %s ;"
+        val = (req,username)
+        cursor.execute(query, val)
+        db.commit()
 
-    #username = str(request.args['username'])
-    #query = "UPDATE accounts SET name = %s  WHERE username = %s ;"
-    #val = (req,username)
-    #print(req)
+        true = true
+        res = make_response(jsonify({"ok":true}),200)
 
-    #cursor.execute(query, val)
-
-    #db.commit()
-
-    true = true
-    res = make_response(jsonify({"ok":true}),200)
-
-    return res
+        return res
 
     #else:
         #rep = make_response(jsonify({"error":true}),400)
