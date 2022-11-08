@@ -15,7 +15,7 @@
 
     <div class="login-form">
         <div class="word">
-           {{session.name}}，歡迎登入系統</div>
+           <div class="name">{{session.name}}</div>，歡迎登入系統</div>
         <div class="logout"> <a href="http://127.0.0.1:3000/" type="submit" >登出系統</a></div>
 
 
@@ -77,12 +77,10 @@ function update(){
     let userUpdate = document.getElementById("username_update")
     let userUpdateName = userUpdate.value
 
-    const nameElement = document.getElementById("username");
-    const accountName = nameElement.value;
     
-    console.log(userUpdateName)
+ /*    console.log(userUpdateName) */
 
-    fetch('http://127.0.0.1:3000/api/member?username=' + accountName ,{
+    fetch('http://127.0.0.1:3000/api/member' ,{
 
             method: "PATCH",
             headers: {'Content-Type': 'application/json'}, 
@@ -96,12 +94,9 @@ function update(){
                 return response.json();
             }).then((data) =>
             {
+                console.log(data)
 
-                updateDate=data.name
-                console.log(updateDate)
-                return {
-                    "name":updateDate
-                }
+                return 
                 
             })
 }

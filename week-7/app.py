@@ -77,19 +77,27 @@ def api_all():
 
 @app.route('/api/member', methods=['PATCH'])
 def update():
-    if 'username' in request.args:
+
+  
         req = request.get_json()
-        print(req)
-        username = str(request.args['username'])
-        query = "UPDATE accounts SET name = %s  WHERE username = %s ;"
-        val = (req,username)
+        username = req['name']
+       
+        #userId = str(request.args['userId'])
+        
+  
+        query = "UPDATE accounts SET name = %s WHERE id = %s"
+     
+        #val = (username,userId)
+        val = (username,session['userId'])
         cursor.execute(query, val)
         db.commit()
+        session['name']=username
 
-        true = true
-        res = make_response(jsonify({"ok":true}),200)
+        
+        res = make_response(jsonify({"ok":'1'}),200)
 
         return res
+       
 
     #else:
         #rep = make_response(jsonify({"error":true}),400)
@@ -167,6 +175,7 @@ def signin():
         if record : #確認record是否存在
             #創建session
             session['loggedin'] = True
+            session['userId'] = record[0]
             session['username'] = record[2]
             session['password'] = record[3]
             session['name']=record[1]
