@@ -14,8 +14,8 @@
     </div>
 
     <div class="login-form">
-        <div class="word">
-           <div class="name">{{session.name}}</div>，歡迎登入系統</div>
+        <div class="word" id="session_name_container">
+           <p id="session_name">{{session.name}}</p><p>，歡迎登入系統</p></div>
         <div class="logout"> <a href="http://127.0.0.1:3000/" type="submit" >登出系統</a></div>
 
 
@@ -94,9 +94,25 @@ function update(){
                 return response.json();
             }).then((data) =>
             {
+                console.log(userUpdateName)
+                console.log(jsonData);
                 console.log(data)
+                
+                let List  = document.getElementById('session_name_container');
+                let oldNode = document.querySelectorAll('p')[0];
+                let newNode = document.createElement('p');
+                let textNode = document.createTextNode(userUpdateName);
+                newNode.appendChild(textNode);
 
-                return 
+                // 將原有的 oldNode 替換成新節點 newNode
+                List.replaceChild(newNode, oldNode);
+
+                let Div = document.querySelector("#update");
+                let Text = document.createElement("div");
+                Text.textContent = '更新成功';
+                return Div.appendChild(Text);
+
+                
                 
             })
 }

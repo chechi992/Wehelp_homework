@@ -81,22 +81,23 @@ def update():
   
         req = request.get_json()
         username = req['name']
-       
-        #userId = str(request.args['userId'])
-        
-  
+
         query = "UPDATE accounts SET name = %s WHERE id = %s"
-     
-        #val = (username,userId)
+    
         val = (username,session['userId'])
         cursor.execute(query, val)
         db.commit()
         session['name']=username
 
-        
-        res = make_response(jsonify({"ok":'1'}),200)
+        true = True
+        if username:
+            res = make_response(jsonify({"ok":true}),200)
 
-        return res
+            return res
+
+        else:
+            rep = make_response(jsonify({"error":true}),500)
+            return rep
        
 
     #else:
