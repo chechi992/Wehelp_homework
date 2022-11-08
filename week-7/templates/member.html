@@ -55,9 +55,10 @@ function search(){
         
                 if (jsonData != null){
                     let result = jsonData['name'];
+                    let result_two = jsonData['username'];
                     let Div = document.querySelector("#search");
                     let Text = document.createElement("div");
-                    Text.textContent = result;
+                    Text.textContent =  result + '('+result_two +')';
                     return Div.appendChild(Text);
                 }
 
